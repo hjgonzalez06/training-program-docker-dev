@@ -1,8 +1,11 @@
 version: "3.9"
 services:
-  tp-intro:
-    container_name: tp-intro
-    image: hayd/alpine-deno:latest
-    volumes: ["./:/usr/src/app"]
+  tp-frontend:
+    container_name: tp-frontend
+    image: node:14-buster-slim
+    volumes:
+    - "../training-program-frontend:/usr/src/app"
+    - "/usr/src/app/node_modules"
     working_dir: "/usr/src/app"
-    command: ["sh", "-c", "DENO_DIR=\"./.deno\" deno eval \"console.log('\\\\nLEVEL 3.2: WORK IN PROGRESS!\\\\n')\""]
+    command: ["npm", "run", "dev:smart"]
+    ports: ["3000:3000"]

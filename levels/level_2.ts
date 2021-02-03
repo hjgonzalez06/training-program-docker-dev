@@ -40,7 +40,7 @@ export default async function level2 () {
   log(bg('Congratulations!'), b('You finished Level 2:'), 'writing a file from inside a container.')
   log('')
   log('')
-  log(b('-> LEVEL 3.1:'), 'enabling the Frontend.')
+  log(b('-> LEVEL 3:'), 'enabling the Frontend.')
   log('')
   log('- Take a look again at the "docker-compose.yaml" file.')
   log('- We\'ve changed it to run a Frontend web server on port 3000 by default.')
