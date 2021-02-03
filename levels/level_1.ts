@@ -27,4 +27,5 @@ export default async function level1 () {
   log('- Add an environment variable called "CURRENT_LEVEL" on the "tp-intro" service.')
   log('- Set its value to "./level_2.ts".')
   log('- Run "docker-compose up" again to advance to the next level!')
+  log('')
 }

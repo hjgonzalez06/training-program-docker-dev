@@ -16,7 +16,9 @@ Please read on to find out how to use this repository.
 - After cloning any needed repositories you may only use from the Docker CLI.
 - The commands you're allowed to use are `docker` and `docker-compose`, along with any
   parameters.
-- DO NOT cheat by executing commands that are not from Docker, such as `npm`, `npx`, `rm`, etc.
+- DO NOT cheat by executing commands that are not from Docker (such as `npm`, `npx`, `rm`, etc) from outside of the containers.
+- _(Linux only)_ DO NOT execute Docker commands as the superuser! (Don't use `sudo docker` or `sudo docker-compose`).
+  You'll need to add your user to the `docker` group on your operative system.
 
 ## Usage
 

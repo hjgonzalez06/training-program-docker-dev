@@ -5,4 +5,5 @@ services:
     image: hayd/alpine-deno:latest
     volumes: ["./:/usr/src/app"]
     working_dir: "/usr/src/app"
-    command: ["sh", "-c", "DENO_DIR=\"./.deno\" deno run --allow-net --allow-env --allow-read --allow-write intro.ts"]
+    # DO NOT EDIT THE FOLLOWING LINE AS PART OF AN EXERCISE!
+    command: ["sh", "-c", "DENO_DIR=\"./.deno\" deno run --allow-net --allow-env --allow-read --allow-write levels/intro.ts"]
