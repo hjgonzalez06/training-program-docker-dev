@@ -1,4 +1,6 @@
-import { bg, b, log, buy, sleep } from './helpers.ts'
+import { existsSync } from 'https://deno.land/std@0.85.0/fs/mod.ts'
+
+import { bg, br, b, log, buy, sleep } from './helpers.ts'
 
 export default async function level2 () {
   log('')
@@ -23,7 +25,9 @@ export default async function level2 () {
   const fileName = 'level_2.txt'
   const expectedContentRegEx = /^LEVEL_2/
 
-  Deno.writeTextFileSync(fileName, '')
+  if (!existsSync(fileName)) {
+    Deno.writeTextFileSync(fileName, '')
+  }
 
   while (true) {
     const contents = Deno.readTextFileSync(fileName)
@@ -33,11 +37,28 @@ export default async function level2 () {
     await sleep(1000)
   }
 
-  Deno.removeSync(fileName)
-
   log('')
   log('')
   log(bg('Congratulations!'), b('You finished Level 2:'), 'writing a file from inside a container.')
+  log('')
+  log('')
+  log(b('-> LEVEL 2½:'), 'cloning the repositories.')
+  log('')
+  log('- Please clone the backend and frontend repositories linked on this repository\'s README.')
+  log('- Make sure to clone them on the same folder you cloned this repository.')
+  log('')
+
+  if (
+    !existsSync('../frontend/package.json') ||
+    !existsSync('../backend/package.json')
+  ) {
+    log(br('Repositories not found.'), 'Please clone the repositories and try again.')
+    return
+  }
+
+  log('')
+  log('')
+  log(bg('Congratulations!'), b('You finished Level 2½:'), 'cloning the repositories.')
   log('')
   log('')
   log(b('-> LEVEL 3:'), 'enabling the Frontend.')
@@ -51,4 +72,5 @@ export default async function level2 () {
 
   Deno.renameSync('./docker-compose.yaml', 'docker-compose.intro.yaml')
   Deno.renameSync('./docker-compose.level_3.yaml', 'docker-compose.yaml')
+  Deno.removeSync(fileName)
 }
