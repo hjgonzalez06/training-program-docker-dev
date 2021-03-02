@@ -1,12 +1,28 @@
 version: "3.9"
 services:
-  tp-intro:
-    container_name: tp-intro
-    image: hayd/alpine-deno:latest
+  tp-backend:
+    container_name: tp-backend
+    image: node:14-buster-slim
     volumes:
-    - "./:/usr/src/app"
-    - "../training-program-backend:/usr/src/backend"
-    - "../training-program-frontend:/usr/src/frontend"
+    - "../training-program-backend:/usr/src/app"
+    - "/usr/src/app/node_modules"
     working_dir: "/usr/src/app"
-    # DO NOT EDIT THE FOLLOWING LINE AS PART OF AN EXERCISE!
-    command: ["sh", "-c", "DENO_DIR=\"./.deno\" deno run --unstable --allow-net --allow-env --allow-read --allow-write levels/intro.ts"]
+    command: ["npm", "run", "dev:smart:with-migrations"]
+    ports: ["3001:3001"]
+    environment:
+    - DB_HOST=tp-database
+    - DB_PORT=5432
+    - DB_USER=tp_db
+    - DB_PASSWORD=tp_db
+    - DB_NAME=tp_db
+    - DB_DIALECT=postgres
+
+  tp-database:
+    container_name: tp-database
+    image: postgres:13-alpine
+    ports:
+    - "5432:5432"
+    environment:
+    - POSTGRES_DB=tp_db
+    - POSTGRES_USER=tp_db
+    - POSTGRES_PASSWORD=tp_db
